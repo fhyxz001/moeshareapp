@@ -1,4 +1,5 @@
 import {Button, StyleSheet, Text, View} from "react-native";
+import axios from "axios";
 
 export default function Page() {
   return (
@@ -6,15 +7,23 @@ export default function Page() {
       <View style={styles.main}>
         <Text style={styles.title}>Hello World</Text>
         <Text style={styles.subtitle}>This is the first page of your app.</Text>
-        <Button title="Fetch Demo" onPress={fetchDemo} />
+        <Button title="Fetch Demo" onPress={axiosDemo} />
       </View>
     </View>
   );
 }
-const fetchDemo = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-  const json = await response.json();dd
-  console.log(json);
+const axiosDemo = async () => {
+  const cookie = '';
+  const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  const instance = axios.create({
+    headers: {
+      Cookie: cookie,
+      'User-Agent': userAgent,
+    },
+  });
+  const response = await instance.get('https://moeshare.cc/simple/?f35.html');
+  // 处理响应
+  console.log('Response:', response.data);
 };
 
 
